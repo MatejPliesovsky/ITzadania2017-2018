@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="jquery-3.2.1.min.js"></script>
   <script src="script.js"></script>
   <title>Moj JS-Formular</title>
@@ -38,8 +39,8 @@
       <tr>
         <td>
           <input type="button" id="ulozit" name="submit" value="ODOSLAŤ" onclick="myCreateTable()" />
-          <input type="button" id="store" name="storage" value="ULOZIT" onclick="storeData(meno,priezvisko,date,pohlavie)"/>
-          <input type="button" id="nacitat" name="loader" value="NAČÍTAŤ"/>
+          <input type="button" id="store" name="storage" class="save" value="ULOŽIŤ" onclick="storeData()"/>
+          <input type="button" id="nacitat" name="loader" class="access"value="NAČÍTAŤ"/>
         </td>
       </tr>
       <tr>

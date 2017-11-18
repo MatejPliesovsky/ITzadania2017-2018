@@ -83,21 +83,29 @@ $(document).ready(function() {
   });
 });
 
-function storeData(meno,priezvisko,date,pohlavie) {
-    if (typeof (localStorage) == 'undefined') {
-        console.log('Nepodporovane lokalne ulozisko.');
-    } else {
-        try {
-            localStorage.setItem('boxik', JSON.stringify({
-                meno: meno,
-                priezvisko: priezvisko,
-                date: date,
-                pohlavie: pohlavie,
-            }));
-        } catch (e) {
-            if (e == QUOTA_EXCEEDED_ERR) {
-                console.log('Quota exceeded!');
-            }
-        }
-    }
+function storeData() {
+  if (localStorage) {
+    $(document).ready(function() {
+      $(".save").click(function() {
+
+        var meno = $("#meno").val();
+        var priezvisko = $("#priezvisko").val();
+        var dob = $("#date").val();
+        var pohlavie = document.querySelector('input[name = "pohlavie"]:checked').value;
+
+        // Store data
+        localStorage.setItem("meno", meno);
+        localStorage.setItem("priezvisko", priezvisko);
+        localStorage.setItem("date",dob );
+        localStorage.setItem("pohlavie", pohlavie);
+        console.log("Your first name is saved.");
+      });
+      $(".access").click(function() {
+        // Retrieve data
+        console.log(localStorage.getItem("meno"),localStorage.getItem("priezvisko"),localStorage.getItem("date"),localStorage.getItem("pohlavie"));
+      });
+    });
+  } else {
+    console.log("Sorry, your browser do not support local storage.");
+  }
 };
