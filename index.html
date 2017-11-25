@@ -11,69 +11,72 @@
 </head>
 
 <body>
-  <form action="" name="mojjsf" id="mojjsf">
-    <table id=formular>
-      <tr>
-        <td>
-          <label for='meno'>Meno:</label>
-          <input type="text" id="meno" name="meno" placeholder="Napis sem" />
-          <div id="errmeno" class="errors"></div>
-        </td>
-        <td>
-          <label for='priezvisko'>Priezvisko:</label>
-          <input type="text" id="priezvisko" name="priezvisko" placeholder="Napis sem" />
-          <div id="errpriezvisko" class="errors"></div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for='DOB'>Datum narodenia:</label>
-          <input type="date" id="date" name="datumnar" />
-        </td>
-        <td>
-          <label for='pohlavie'>Pohlavie:</label>
-          <input type="radio" name="pohlavie" value="Muž" id="m"><label for="muz"> Muž</label>
-          <input type="radio" name="pohlavie" value="Žena" id="z"><label for="zena"> Žena</label>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="button" id="ulozit" name="submit" value="ODOSLAŤ" onclick="myCreateTable()" />
-          <input type="button" id="store" name="storage" class="save" value="ULOŽIŤ" onclick="storeData()"/>
-          <input type="button" id="nacitat" name="loader" class="access"value="NAČÍTAŤ"/>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="filter">
-            <label for='Pohlavie'>Vyberte pohlavie:</label>
-            <select>
-              <option value="mz" selected>Muži a ženy</option>
-              <option value="m">Muži</option>
-              <option value="z">Ženy</option>
-            </select>
-            <span>
-            <input type="checkbox" id="calculate" onclick="switcher()">Ukáž dátum narodenia/vek
-            </span>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </form>
+  <div class=fixer>
+    <form action="" name="mojjsf" id="mojjsf">
+      <table id=formular>
+        <tr>
+          <td>
+            <label for='meno'>Meno:</label>
+            <input type="text" id="meno" name="meno" placeholder="Napis sem" />
+            <div id="errmeno" class="errors"></div>
+          </td>
+          <td>
+            <label for='priezvisko'>Priezvisko:</label>
+            <input type="text" id="priezvisko" name="priezvisko" placeholder="Napis sem" />
+            <div id="errpriezvisko" class="errors"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for='DOB'>Datum narodenia:</label>
+            <input type="date" id="date" name="datumnar" />
+          </td>
+          <td>
+            <label for='pohlavie'>Pohlavie:</label>
+            <input type="radio" name="pohlavie" value="Muž" id="m"><label for="muz"> Muž</label>
+            <input type="radio" name="pohlavie" value="Žena" id="z"><label for="zena"> Žena</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="button" id="ulozit" name="submit" value="ODOSLAŤ" onclick="myCreateTable()" />
+            <input type="button" id="store" name="storage" class="save" value="ULOŽIŤ" onclick="storeData()" />
+            <input type="button" id="nacitat" name="loader" class="access" value="NAČÍTAŤ" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="filter">
+              <label for='Pohlavie'>Vyberte pohlavie:</label>
+              <select>
+                <option value="mz" selected>Muži a ženy</option>
+                <option value="m">Muži</option>
+                <option value="z">Ženy</option>
+              </select>
+              <span>
+              <input type="checkbox" id="calculate" >Ukáž dátum narodenia/vek
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
 
 
 
-  <table id="listTable" class="data" >
+    <table id="listTable" class="data">
       <tr>
         <th>Meno</th>
         <th>Priezvisko</th>
         <th>Datum narodenia</th>
         <th>Pohlavie</th>
       </tr>
-  </table>
-  <table id="listTable2" class="data" >
+    </table>
+    <table id="listTable2" class="data">
 
-  </table>
+    </table>
+  </div>
+
 
 </body>
 
