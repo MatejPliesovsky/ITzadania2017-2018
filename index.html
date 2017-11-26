@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
   <script src="jquery-3.2.1.min.js"></script>
   <script src="script.js"></script>
   <title>Moj JS-Formular</title>
@@ -46,13 +47,14 @@
         </tr>
         <tr>
           <td>
-            <div class="filter">
+            <div class="filter" id="filterText">
               <label for='Pohlavie'>Vyberte pohlavie:</label>
-              <select>
-                <option value="mz" selected>Muži a ženy</option>
+              <select id='mySelector'>
+                <option value="all" selected>Muži a ženy</option>
                 <option value="m">Muži</option>
                 <option value="z">Ženy</option>
               </select>
+
               <span>
               <input type="checkbox" id="calculate" >Ukáž dátum narodenia/vek
               </span>
@@ -62,9 +64,7 @@
       </table>
     </form>
 
-
-
-    <table id="listTable" class="data">
+    <table id="listTable">
       <tr>
         <th>Meno</th>
         <th>Priezvisko</th>
@@ -72,11 +72,10 @@
         <th>Pohlavie</th>
       </tr>
     </table>
-    <table id="listTable2" class="data">
+    <table id="listTable2" class="content">
 
     </table>
   </div>
-
 
 </body>
 

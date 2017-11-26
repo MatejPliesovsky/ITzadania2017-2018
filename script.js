@@ -54,14 +54,15 @@ function myDeleteTable() {
 
 $(document).ready(function() {
   $("#calculate").click(function() {
-    if(calculate.checked){
-    $(".birthday").css({ 'display': "none" });
-    $(".exage").css({ 'display': "block" })
-  }else {
-    $(".birthday").css({ 'display': "block" });
-    $(".exage").css({ 'display': "none" })}
+    if (calculate.checked) {
+      $(".birthday").css({'display': "none"});
+      $(".exage").css({'display': "block"})
+    } else {
+      $(".birthday").css({'display': "block"});
+      $(".exage").css({'display': "none"})
+    }
   })
-  });
+});
 
 function dateToAge() {
   var mdate = $("#date").val().toString();
@@ -88,6 +89,24 @@ function dateToAge() {
   }
 };
 
+
+
+$(document).ready(function($) {
+
+    $('#mySelector').change( function(){
+      var selection = $(this).val();
+      $('listTable2')[selection? 'show' : 'hide']();
+
+      if (selection) {
+        $.each($('#listTable2'), function(index, item) {
+          $(item)[$(item).is(':contains('+ selection  +')')? 'show' : 'hide']();
+        });
+      }
+
+    });
+});
+
+
 function storeData() {
   if (localStorage) {
     $(document).ready(function() {
@@ -101,13 +120,13 @@ function storeData() {
         // Store data
         localStorage.setItem("meno", meno);
         localStorage.setItem("priezvisko", priezvisko);
-        localStorage.setItem("date",dob );
+        localStorage.setItem("date", dob);
         localStorage.setItem("pohlavie", pohlavie);
         console.log("Your first name is saved.");
       });
       $(".access").click(function() {
         // Retrieve data
-        console.log(localStorage.getItem("meno"),localStorage.getItem("priezvisko"),localStorage.getItem("date"),localStorage.getItem("pohlavie"));
+        console.log(localStorage.getItem("meno"), localStorage.getItem("priezvisko"), localStorage.getItem("date"), localStorage.getItem("pohlavie"));
       });
     });
   } else {
