@@ -40,7 +40,7 @@
         </tr>
         <tr>
           <td>
-            <input type="button" id="ulozit" name="submit" value="ODOSLAŤ" onclick="myCreateTable()" />
+            <input type="button" id="ulozit" name="submit" value="ODOSLAŤ" onclick="addToTable()" />
             <input type="button" id="store" name="storage" class="save" value="ULOŽIŤ" onclick="storeData()" />
             <input type="button" id="nacitat" name="loader" class="access" value="NAČÍTAŤ" />
           </td>
@@ -50,7 +50,8 @@
             <div class="filter" id="filterText">
               <label for='Pohlavie'>Vyberte pohlavie:</label>
               <select id='mySelector'>
-                <option value="all" selected>Muži a ženy</option>
+                <option selected></option>
+                <option value="all">Muži a ženy</option>
                 <option value="m">Muži</option>
                 <option value="z">Ženy</option>
               </select>
@@ -65,15 +66,16 @@
     </form>
 
     <table id="listTable">
-      <tr>
-        <th>Meno</th>
-        <th>Priezvisko</th>
-        <th>Datum narodenia</th>
-        <th>Pohlavie</th>
-      </tr>
-    </table>
-    <table id="listTable2" class="content">
-
+      <thead>
+        <tr>
+          <th>Meno</th>
+          <th>Priezvisko</th>
+          <th>Datum narodenia / Vek</th>
+          <th>Pohlavie</th>
+        </tr>
+      </thead>
+      <tbody id="listTable2" class="content">
+      </tbody>
     </table>
   </div>
 

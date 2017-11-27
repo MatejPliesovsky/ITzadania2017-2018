@@ -1,3 +1,13 @@
+class User {
+  constructor(name, surname, dateOfBirth, sex) {
+    this.name = name;
+    this.surname = surname;
+    this.dateOfBirth = dateOfBirth;
+    this.age = dateToAge(dateOfBirth);
+    this.sex = sex;
+  }
+}
+
 $(document).ready(function() {
   $("#ulozit").click(function(event) {
     var meno = $("#meno").val();
@@ -28,44 +38,67 @@ $(document).ready(function() {
 
 });
 
-function myCreateTable() {
-  var table = document.getElementById("listTable2");
-  var row = table.insertRow(0);
-  var meno = row.insertCell(0);
-  var priezvisko = row.insertCell(1);
-  var dob = row.insertCell(2);
-  var ee = row.insertCell(3);
-  var pohlavie = row.insertCell(4);
-  var row5 = row.insertCell(5);
+var model = [];
+function insertNewUser() {
+  var user = new User(
+    $("#meno").val(),
+    $("#priezvisko").val(),
+    $("#date").val(),
+    $("input[name = \"pohlavie\"]:checked").val()
+  );
+  model.push(user);
+}
 
-  meno.innerHTML = $("#meno").val();
-  priezvisko.innerHTML = $("#priezvisko").val();
-  dob.innerHTML = "<div class=\"birthday\">" + $("#date").val() + "</div>";
-  ee.innerHTML = dateToAge();
-  pohlavie.innerHTML = document.querySelector('input[name = "pohlavie"]:checked').value;
-  row5.innerHTML = '<button onclick="myDeleteTable(this)" class="btn btn-danger">X</button>';
+class Filter {
+  constructor(property, value) {
+    this.property = property;
+    this.value = value;
+  }
+}
 
+var filter = null;
+function updateTable() {
+  var table = $("#listTable2");
+  table.empty();
+
+  for (var i = 0; i  < model.length; i++) {
+    if (filter && model[i][filter.property] == filter.value) {
+      continue;
+    }
+    var tr = $("<tr></tr>");
+    tr.append("<td>" + model[i].name + "</td>");
+    tr.append("<td>" + model[i].surname + "</td>");
+    if (showAge){
+      tr.append("<td>" + model[i].age + "</td>");
+    }
+    else {
+      tr.append("<td>" + model[i].dateOfBirth + "</td>");
+    }
+    tr.append("<td>" + model[i].sex + "</td>");
+    tr.append("<button onclick=\"myDeleteTable(this)\" class=\"btn btn-danger\">X</button>");
+    table.append(tr);
+  }
   document.getElementById("mojjsf").reset();
 };
+
+function addToTable() {
+  insertNewUser();
+  updateTable();
+}
 
 function myDeleteTable() {
   document.getElementById("listTable2").deleteRow(this);
 };
 
+var showAge = false;
 $(document).ready(function() {
   $("#calculate").click(function() {
-    if (calculate.checked) {
-      $(".birthday").css({'display': "none"});
-      $(".exage").css({'display': "block"})
-    } else {
-      $(".birthday").css({'display': "block"});
-      $(".exage").css({'display': "none"})
-    }
-  })
+    showAge = !showAge;
+    updateTable();
+  });
 });
 
-function dateToAge() {
-  var mdate = $("#date").val().toString();
+function dateToAge(mdate) {
   var yearThen = parseInt(mdate.substring(0, 4), 10);
   var monthThen = parseInt(mdate.substring(5, 7), 10);
   var dayThen = parseInt(mdate.substring(8, 10), 10);
@@ -85,7 +118,7 @@ function dateToAge() {
   if (isNaN(year_age) || isNaN(month_age) || isNaN(day_age)) {
     return "Error!";
   } else {
-    return "<div class=\"exage\" style=\"display: none\">" + year_age + "</div> ";
+    return year_age;
   }
 };
 
@@ -94,15 +127,17 @@ function dateToAge() {
 $(document).ready(function($) {
 
     $('#mySelector').change( function(){
-      var selection = $(this).val();
-      $('listTable2')[selection? 'show' : 'hide']();
-
-      if (selection) {
-        $.each($('#listTable2'), function(index, item) {
-          $(item)[$(item).is(':contains('+ selection  +')')? 'show' : 'hide']();
-        });
+      switch ($(this).val()) {
+        case "m":
+          filter = new Filter("sex", "Žena");
+          break;
+        case "z":
+          filter = new Filter("sex", "Muž");
+          break;
+        default:
+          filter = null;
       }
-
+      updateTable();
     });
 });
 
